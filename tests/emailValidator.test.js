@@ -20,6 +20,7 @@ test('B: true si domaine a un point non final', () => {
   expect(emailValidator('a@b.c')).toBe(true);
 });
 
+
 test('C: false si espace avant @', () => {
   expect(emailValidator('ab c@d.ef')).toBe(false);
 });
@@ -28,4 +29,15 @@ test('C: false si espace après @', () => {
 });
 test('C: true sans espace', () => {
   expect(emailValidator('abc@def.com')).toBe(true);
+});
+
+
+test('D: false si rien avant @', () => {
+  expect(emailValidator('@domain.com')).toBe(false);
+});
+test('D: false si rien après @', () => {
+  expect(emailValidator('user@')).toBe(false);
+});
+test('D: true si texte des deux côtés', () => {
+  expect(emailValidator('user@domain.com')).toBe(true);
 });
